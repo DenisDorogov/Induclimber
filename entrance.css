@@ -1,5 +1,5 @@
 .container {
-    width: 100vw;
+    width: 90vw;
     max-width: 1080px;
     background-color: darkolivegreen;
     min-height: 100vh;
@@ -9,22 +9,22 @@
 .block-params-names {
     /* height: 20px; */
     padding-top: 20px;
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
     color:blanchedalmond;
     background-color: darkslategray;
     display: flex;
     justify-content: space-around;
     text-align: center;
-    font-size: 30px;
+    font-size: 12px;
 }
 .button-names {
-    width: 160px;
+    width: 23%;
 }
 
 .block-params-up {
     height: 130px;
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
     background-color: darkslategray;
     display: flex;
@@ -43,21 +43,23 @@
     margin: 10px 0px;
     border-radius: 26px;
     background-color: cadetblue;
-    font-size: 48px;
+    font-size: 30px;
 }
 
 .block-output-table {
-    width: 90% ;
+    width: 100% ;
     min-height: 100px;
     margin: 0 auto ;
     background-color: bisque;
     display: grid;
-    grid-template-columns: 20% auto;
+    grid-template-columns: 12% auto;
     grid-column-gap: 20px; 
+    
+    
 }
 
 .output-floor {
-    /* width: 160px ; */
+    width: 60px ;
     background-color: cornflowerblue;
     /* width: 100%; */
     /* height: 100%; */
@@ -72,11 +74,11 @@
 }
 
 .output-number {
-    margin-left: 40px;
-    font-size: 48px;
-    line-height: 40px;
+    margin-left: 12px;
+    font-size: 27px;
+    line-height: 43px;
     text-align: center;
-    width: 30px;
+    width: 40px;
 }
 
 

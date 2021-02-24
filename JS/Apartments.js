@@ -43,17 +43,20 @@ class Apartments {
         this.element = document.getElementById('block-output-table');
         this.element.innerHTML = '';
         for (let i = this.topFloor ; i > 0; i--) {
-            putIn = document.createElement('p');
-            putIn.className = "output-floor output-number";
-            putIn.innerHTML = i;
-            this.element.appendChild(putIn);
-
             let divElement = document.createElement('div');
+            divElement.className = 'output-floor';
+            putIn = document.createElement('p');
+            putIn.className = 'output-number';
+            putIn.innerHTML = i;
+            divElement.appendChild(putIn);
+            this.element.appendChild(divElement);
+
+            divElement = document.createElement('div');
             // divElement.innerHTML = '';
             divElement.className = 'floor-block';
             for (let j = 0 ; j < this.countApartmentOnFloor; j++) {
                 putIn = document.createElement('p');
-                putIn.className = "output-number";
+                putIn.className = 'output-number';
                 if (list.length == 0) {
                     break;
                 } else {

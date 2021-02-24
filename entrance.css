@@ -23,7 +23,7 @@
 }
 
 .block-params-up {
-    height: 130px;
+    /* height: 130px; */
     width: 100%;
     margin: 0 auto;
     background-color: darkslategray;
@@ -38,10 +38,10 @@
 }
 
 .button-count {
-    height: 80px;
-    width: 160px;
+    height: 60px;
+    width: 82px;
     margin: 10px 0px;
-    border-radius: 26px;
+    border-radius: 15px;
     background-color: cadetblue;
     font-size: 30px;
 }
@@ -91,18 +91,25 @@ footer {
 }
 
 .modal {
-    position: fixed;
-    top: 5%;
-    left: 25%;
-    /* margin: 5% auto; */
+    /* position: fixed; */
+
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    /* top: 5%; */
+    /* left: 10vw; */
+    margin: 40px auto;
     transform: translate(-50%, -505);
-    width: 520;
-    max-width: 100%;
-    min-width: 520px;
+    width: 80vw;
+    max-width: 520px;
+    /* min-width: 520px; */
     z-index: 1010;
     display: flex;
     flex-direction: column;
     background-color: blueviolet;
+    text-align: center;
 
 }
 
@@ -120,12 +127,12 @@ footer {
 }
 
 .button-modal {
-    height: 80px;
-    width: 100%px;
+    height: 60px;
+    width: 100%;
     margin: 20px 0px 0px 0px;
-    border-radius: 26px;
+    border-radius: 15px;
     background-color: cadetblue;
-    font-size: 48px;
+    font-size: 30px;
 }
 
 .entering-number {
@@ -146,12 +153,12 @@ footer {
 }
 
 .modal-button {
-    height: 80px;
-    min-width: 160px;
-    margin: 20px auto;
-    border-radius: 26px;
+    height: 60px;
+    min-width: 90%;
+    margin: 0px auto;
+    border-radius: 15px;
     background-color: cadetblue;
-    font-size: 48px;
+    font-size: 30px;
 }
 
 .modal-overlay {

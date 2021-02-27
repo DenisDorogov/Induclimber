@@ -15,7 +15,8 @@ class SavedData {
             this.buttons[key] = [
                 MAIN_BUTTONS_DEFAULT[key][0],
                 this.getStorage(key),
-                MAIN_BUTTONS_DEFAULT[key][2]
+                MAIN_BUTTONS_DEFAULT[key][2],
+                MAIN_BUTTONS_DEFAULT[key][3]
             ]
         }
     }

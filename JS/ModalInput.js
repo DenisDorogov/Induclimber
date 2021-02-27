@@ -14,6 +14,7 @@ class ModalInput {
     }
 
     modalOn(id, value) {
+        console.log('id = ', id);
         this.idButton = id;
         this.modalField = document.querySelector('#entering-number');
         if (value == undefined || value == 0) {

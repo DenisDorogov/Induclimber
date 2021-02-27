@@ -20,7 +20,6 @@ class Apartments {
             first <= 0 ? list.push('  ') : list.push(first);
             first++;
         }
-        console.log(list);
         return list;
     }
 
@@ -52,7 +51,6 @@ class Apartments {
             this.element.appendChild(divElement);
 
             divElement = document.createElement('div');
-            // divElement.innerHTML = '';
             divElement.className = 'floor-block';
             for (let j = 0 ; j < this.countApartmentOnFloor; j++) {
                 putIn = document.createElement('p');

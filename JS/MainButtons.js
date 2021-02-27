@@ -23,6 +23,10 @@ class MainButtons {
     changeCurrentButton(id, value = undefined) {
         for (let key in this.buttonsObj.buttons) {
             if (this.buttonsObj.buttons[key][0] == id) {
+                if (value > this.buttonsObj.buttons[key][3]) {
+                    console.log('Error. Value is must from 0 to ', this.buttonsObj.buttons[key][3]);
+                    value = this.buttonsObj.buttons[key][3];
+                }
                 this.buttonsObj.buttons[key][1] = value;
                 this.buttonsObj.setStorage(key, value); 
                 break;
@@ -58,10 +62,7 @@ class MainButtons {
         }
     }
 
-    // getButtonValue(id)  {
-    //     for (let key in this.buttonsObj) {
-    //         if (id == this.buttonsObj[key][0]) return key;
-    //     }
-    //     return alert('Ошибка getButtonValue');
-    // }
+    getMainButtonValue(id, elem) {
+
+    }
 }

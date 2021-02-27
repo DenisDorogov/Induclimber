@@ -7,25 +7,23 @@ class ModalInput {
     idButton;
 
     constructor(value) {
-        // this.value = value;
         this.modal = document.querySelector("#modal");
         this.modalOverlay = document.querySelector("#modal-overlay");
         this.closeButton = document.querySelector("#close-button");
         this.modal.addEventListener('click', event => this.clickReaction(event.target.id));
-        // modalOverlay = document.querySelector("#button1");
     }
 
     modalOn(id, value) {
-        console.log('id: ', value);
         this.idButton = id;
         this.modalField = document.querySelector('#entering-number');
-        this.modalField.innerHTML = value;
+        if (value == undefined || value == 0) {
+            this.modalField.innerHTML = '';
+        } else {
+            this.modalField.innerHTML = value;
+        }
         this.defaultField = true;
-        // this.modal.addEventListener('click', event => this.clickReaction(event.target.id));
-
         this.modal.classList.toggle("closed");
         this.modalOverlay.classList.toggle("closed");
-
     }
 
     modalOff() {
@@ -82,14 +80,12 @@ class ModalInput {
     }
     
     fieldContent(num) {
-        // console.log( '' + num);
         if (this.defaultField == true) {
             this.modalField.innerHTML = '' + num;
             this.value = '' + num;
             this.defaultField = false;
         } else {
             this.value = this.value + num;
-            console.log(this.value);
             this.modalField.innerHTML = this.value;
         }
         

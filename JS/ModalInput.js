@@ -89,11 +89,5 @@ class ModalInput {
             this.value = this.value + num;
             this.modalField.innerHTML = this.value;
         }
-        
     }
-
-
-
-
-
 }

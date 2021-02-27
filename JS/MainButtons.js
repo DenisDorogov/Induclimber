@@ -37,10 +37,6 @@ class MainButtons {
         this.apartments.outputList();
     }
 
-    modalInput() {
-
-    }
-
     outputButton(id, value) {
         let button = document.getElementById(id);
         if (value == undefined) button.innerHTML = '';
@@ -60,9 +56,5 @@ class MainButtons {
             }
             this.parent.appendChild(button);
         }
-    }
-
-    getMainButtonValue(id, elem) {
-
     }
 }

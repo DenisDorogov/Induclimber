@@ -8,4 +8,4 @@ const LOCAL_STORAGE_LENGTH = 4;
 
 let button = new MainButtons();
 let data = new SavedData();
-button.outputButtons();s
+button.outputButtons();

@@ -65,6 +65,4 @@ class Apartments {
             this.element.appendChild(divElement);
         }
     }
-
-
 }

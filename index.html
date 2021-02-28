@@ -4,7 +4,204 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Квартиры в подъезде</title>
-    <link rel="stylesheet" href="entrance.css">
+    <style>
+        .container {
+    width: 96vw;
+    max-width: 800px;
+    min-width: 460px;
+    background-color:  #fcdf87;
+    margin: 0 auto;
+}
+
+.block-params-names {
+    /* height: 20px; */
+    padding-top: 10px;
+    width: 100%;
+    margin: 0 auto;
+    color: #fcdf87;
+    background-color: #1b96f3;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    font-size: 17px;
+}
+
+.button-names {
+    width: 23%;
+}
+
+.block-params-up {
+    /* height: 130px; */
+    width: 100%;
+    margin: 0 auto;
+    background-color:#1b96f3;
+    display: flex;
+    justify-content: space-around;
+    color: #fcdf87;
+}
+
+.text-last-flat {
+    width: 20%;
+    margin: 20px 20px;
+}
+
+.button-count {
+    height: 60px;
+    width: 23%;
+    max-width: 185px;
+    margin: 10px 0px;
+    border-radius: 15px;
+    background-color: #ef0195;
+    font-size: 30px;
+    color: #fcdf87;
+    border-width: 0px;
+    font-weight: 600;
+}
+
+.button-count:active {
+    background-color: #1b96f3;
+}
+
+.block-output-table {
+    width: 94% ;
+    min-height: 100px;
+    margin: 0 3% ;
+    background-color: #fcdf87;
+    display: grid;
+    grid-template-columns: 12% auto;
+    grid-column-gap: 20px; 
+    color:#10133a;
+}
+
+.output-floor {
+    width: 60px ;
+    background-color: #1b96f3;
+    color:#10133a;
+    margin: 10px auto;
+}
+
+.floor-block {
+    display: flex;
+    flex-direction: row-reverse ;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    margin: 10px auto;
+}
+
+.output-number {
+    margin-left: 12px;
+    font-size: 22px;
+    line-height: 0px;
+    text-align: center;
+    width: 40px;
+    font-weight: 600;
+}
+
+
+footer {
+    background-color: rgb(90, 90, 90);
+    width: 90% ;
+    min-height: 100px;
+    margin: 0 auto ;
+    padding-top: 1px;
+}
+
+.modal {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    margin: 40px auto;
+    transform: translate(-50%, -505);
+    width: 80vw;
+    max-width: 520px;
+    z-index: 1010;
+    display: flex;
+    flex-direction: column;
+    background-color: #1b96f3;
+    text-align: center;
+
+}
+
+.closed {
+    display: none;
+}
+
+.modal-guts {
+    margin: 0 auto;
+    width: 90%;
+    padding: 20px 20px 20px 20px;
+    overflow: auto;
+    display: grid;
+    grid-template-columns: 30% 30% 30% ;
+    grid-column-gap: 5%
+}
+
+.button-modal {
+    height: 60px;
+    width: 100%;
+    margin: 20px 0px 0px 0px;
+    border-radius: 15px;
+    background-color: #f68741;
+    font-size: 30px;
+    color:#10133a;
+    border-width: 0px;
+    font-weight: 600;
+}
+
+.entering-number {
+    height: 53px;
+    width: 100%;
+    padding: 5px 0px;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    background-color: #fcdf87;
+    text-align: center;
+    font-size: 48px;
+    color: #10133a;
+    font-weight: 600;
+}
+
+.button-enter {
+    background-color: #ef0195;
+    grid-column-start: 2;
+    grid-column-end: 4;
+    color: #10133a;
+    border-width: 0px;
+}
+
+.modal-button {
+    height: 60px;
+    min-width: 100%;
+    margin: 20px auto;
+    border-radius: 15px;
+    background-color: #f68741;
+    font-size: 30px;
+    color: #10133a;
+    border-width: 0px;
+    font-weight: 600;
+    grid-column-start: 1;
+    grid-column-end: 4;
+}
+
+.modal-button:active {
+    background-color: #fcdf87;
+}
+
+.modal-overlay {
+    z-index: 1000;
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background-color: darkblue;
+    opacity: 50%;
+    color: #ef0195;
+  }
+
+    </style>
     
 </head>
 
@@ -46,11 +243,288 @@
     
 
       <div id="script-tags">
-        <script src="JS/SavedData.js" defer></script>
-        <script src="JS/Apartments.js" defer></script>
-        <script src="JS/MainButtons.js" defer></script>
-        <script src="JS/ModalInput.js" defer></script>
-        <script src="JS/entrance.js" defer></script>
+        <script>
+            class SavedData {
+    buttons = {};
+
+    constructor() {
+        if (localStorage.length < LOCAL_STORAGE_LENGTH) {
+            for (let key in MAIN_BUTTONS_DEFAULT) {
+                this.setStorage(key, MAIN_BUTTONS_DEFAULT[key][1]);
+            }
+        }
+        this.setButtons();
+    }
+
+    setButtons() {
+        for (let key in MAIN_BUTTONS_DEFAULT) { 
+            this.buttons[key] = [
+                MAIN_BUTTONS_DEFAULT[key][0],
+                this.getStorage(key),
+                MAIN_BUTTONS_DEFAULT[key][2],
+                MAIN_BUTTONS_DEFAULT[key][3]
+            ]
+        }
+    }
+
+    setStorage(key, value) {
+        localStorage.setItem(key, value);
+    }
+      
+    getStorage(key) {
+        let value = localStorage.getItem(key);
+        if (value == "undefined") {
+            return undefined;
+        } else {
+            return value;
+        }
+    }
+
+    getButtonValue(id)  {
+        for (let key in this.buttons) {
+            if (id == this.buttons[key][0]) return this.buttons[key][1];
+        }
+        return alert('Ошибка getButtonValue id = ' , id);
+    }
+}
+
+class Apartments {
+    topFloor;
+    countApartmentOnFloor;
+    lastApartment;
+    firstApartment;
+
+    constructor(object) {
+        this.topFloor = object.buttonTopFloor[1];
+        this.countApartmentOnFloor = object.buttonCountAppartments[1];
+        this.lastApartment = object.buttonLastAppartment[1];
+        this.firstApartment = object.buttonFirstAppartment[1];
+    }
+
+    getList(count) {
+        let list = [];
+        let last = count;
+        let first = this.firstApartment;
+
+        for (let i = 0; i < count; i++ ) {
+            first <= 0 ? list.push('  ') : list.push(first);
+            first++;
+        }
+        return list;
+    }
+
+    getCountApartments() {
+        if (this.lastApartment == undefined || this.lastApartment == null ) {
+            this.lastApartment = this.topFloor * this.countApartmentOnFloor;
+        };
+
+        if(this.firstApartment == undefined || this.firstApartment == null) {
+            this.firstApartment = this.lastApartment - this.topFloor * this.countApartmentOnFloor + 1;
+        }
+        return this.lastApartment - this.firstApartment + 1;
+    }
+
+    outputList() {
+        let list = this.getList(this.getCountApartments());
+        let stop = list.length;
+        let putIn;
+
+        this.element = document.getElementById('block-output-table');
+        this.element.innerHTML = '';
+        for (let i = this.topFloor ; i > 0; i--) {
+            let divElement = document.createElement('div');
+            divElement.className = 'output-floor';
+            putIn = document.createElement('p');
+            putIn.className = 'output-number';
+            putIn.innerHTML = i;
+            divElement.appendChild(putIn);
+            this.element.appendChild(divElement);
+
+            divElement = document.createElement('div');
+            divElement.className = 'floor-block';
+            for (let j = 0 ; j < this.countApartmentOnFloor; j++) {
+                putIn = document.createElement('p');
+                putIn.className = 'output-number';
+                if (list.length == 0) {
+                    break;
+                } else {
+                putIn.innerHTML = list.pop();
+                divElement.appendChild(putIn);
+                }
+            }
+            this.element.appendChild(divElement);
+        }
+    }
+}
+
+class MainButtons {
+    parent;
+    buttonsObj;
+    modal;
+    apartments;
+
+    constructor() {
+        this.parent = document.getElementById('block-params-up');
+        this.buttonsObj = new SavedData();
+        this.apartments = new Apartments(this.buttonsObj.buttons);
+        this.apartments.outputList();
+        this.modal = new ModalInput();
+        this.parent.addEventListener('click', event => {
+            let value = this.buttonsObj.getButtonValue(event.target.id);
+            this.modal.modalOn(event.target.id, value);
+        });    
+    }
+
+    updateInstance() {
+        this.apartments = new Apartments(this.buttonsObj.buttons);
+    }
+
+    changeCurrentButton(id, value = undefined) {
+        for (let key in this.buttonsObj.buttons) {
+            if (this.buttonsObj.buttons[key][0] == id) {
+                if (value > this.buttonsObj.buttons[key][3]) {
+                    console.log('Error. Value is must from 0 to ', this.buttonsObj.buttons[key][3]);
+                    value = this.buttonsObj.buttons[key][3];
+                }
+                this.buttonsObj.buttons[key][1] = value;
+                this.buttonsObj.setStorage(key, value); 
+                break;
+            }
+        }
+        this.outputButton(id, value); 
+        this.apartments = new Apartments(this.buttonsObj.buttons);
+        this.apartments.outputList();
+    }
+
+    outputButton(id, value) {
+        let button = document.getElementById(id);
+        if (value == undefined) button.innerHTML = '';
+        else button.innerHTML = value;
+    }
+
+    outputButtons() {
+        for (let key in this.buttonsObj.buttons) {
+            let button = document.createElement('button');
+            button.className = 'button-count';
+            button.id = this.buttonsObj.buttons[key][0];
+            
+            if (this.buttonsObj.buttons[key][1] != undefined) {
+                button.innerHTML = this.buttonsObj.buttons[key][1];
+            } else {
+                button.innerHTML = '';
+            }
+            this.parent.appendChild(button);
+        }
+    }
+}
+
+
+class ModalInput {
+    value;
+    modal;
+    modalOverlay;
+    closeButton;
+    defaultField;
+    idButton;
+
+    constructor(value) {
+        this.modal = document.querySelector("#modal");
+        this.modalOverlay = document.querySelector("#modal-overlay");
+        this.closeButton = document.querySelector("#close-button");
+        this.modal.addEventListener('click', event => this.clickReaction(event.target.id));
+    }
+
+    modalOn(id, value) {
+        console.log('id = ', id);
+        this.idButton = id;
+        this.modalField = document.querySelector('#entering-number');
+        if (value == undefined || value == 0) {
+            this.modalField.innerHTML = '';
+        } else {
+            this.modalField.innerHTML = value;
+        }
+        this.defaultField = true;
+        this.modal.classList.toggle("closed");
+        this.modalOverlay.classList.toggle("closed");
+    }
+
+    modalOff() {
+            this.value = undefined;
+            this.modalOverlay.classList.toggle("closed");
+            this.modal.classList.toggle("closed");
+    }
+
+    valueInput() {
+        if ( Number(this.value) == 0 ) this.value = undefined;
+        button.changeCurrentButton(this.idButton, this.value);
+    }
+
+    clickReaction(id) {
+        switch (id) {
+        case 'close-button': 
+            this.modalOff();
+            break;
+        case 'button-enter':
+            this.valueInput();
+            this.modalOff();
+            break;
+        case 'button1':
+            this.fieldContent(1);
+            break;
+        case 'button2':
+            this.fieldContent(2);
+            break;
+        case 'button3':
+            this.fieldContent(3);
+            break;
+        case 'button4':
+            this.fieldContent(4);
+            break;
+        case 'button5':
+            this.fieldContent(5);
+            break;
+        case 'button6':
+            this.fieldContent(6);
+            break;
+        case 'button7':
+            this.fieldContent(7);
+            break;
+        case 'button8':
+            this.fieldContent(8);
+            break;
+        case 'button9':
+            this.fieldContent(9);
+            break;
+        case 'button0':
+            this.fieldContent(0);
+            break;
+        }
+    }
+    
+    fieldContent(num) {
+        if (this.defaultField == true) {
+            this.modalField.innerHTML = '' + num;
+            this.value = '' + num;
+            this.defaultField = false;
+        } else {
+            this.value = this.value + num;
+            this.modalField.innerHTML = this.value;
+        }
+    }
+}
+
+const MAIN_BUTTONS_DEFAULT = {
+    buttonTopFloor: ['button-top-flour', 5, 'Последний этаж', 40],
+    buttonCountAppartments: ['button-count-appartments', 4, 'Количество на этаже', 12],
+    buttonLastAppartment: ['button-last-appartment', undefined, 'Последняя квартира', 1000],
+    buttonFirstAppartment: ['button-first-appartment', undefined, 'Первая квартира', 999],
+};
+const LOCAL_STORAGE_LENGTH = 4;
+
+let button = new MainButtons();
+let data = new SavedData();
+button.outputButtons();
+        </script>
       </div>
     
 </body>

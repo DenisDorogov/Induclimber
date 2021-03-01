@@ -14,7 +14,14 @@ class ModalInput {
     }
 
     modalOn(id, value) {
-        console.log('id = ', id);
+        let nameElement = document.getElementById('modal-name');
+        for (let key in button.buttonsObj.buttons) {
+            if (id == button.buttonsObj.buttons[key][0]) {
+                nameElement.textContent = button.buttonsObj.buttons[key][2];
+                console.log('nameElement = ', nameElement);
+                break;
+            }
+        }
         this.idButton = id;
         this.modalField = document.querySelector('#entering-number');
         if (value == undefined || value == 0) {
